@@ -11,15 +11,16 @@ import java.util.ArrayList;
 
 public class Adapter extends android.support.v7.widget.RecyclerView.Adapter<Adapter.ViewHolder> {
   private final Context context;
-  private  ArrayList<String> arrayList;
+  private  ArrayList<Integer> arrayList;
   private  int type=0;
-  public Adapter(Context context) {
+  public Adapter(Context context,ArrayList<Integer> integers) {
     this.context=context;
-    this.arrayList=arrayList;
+    this.arrayList=integers;
   }
-  public Adapter(Context context,int type) {
+  public Adapter(Context context,int type,ArrayList<Integer> integers) {
     this.type=type;
     this.context=context;
+    arrayList=integers;
   }
 
   @NonNull
@@ -33,11 +34,12 @@ public class Adapter extends android.support.v7.widget.RecyclerView.Adapter<Adap
 
   @Override
   public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    viewHolder.view.setImageResource(arrayList.get(i));
   }
 
   @Override
   public int getItemCount() {
-    return 18;
+    return arrayList.size();
   }
 
   class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder{
